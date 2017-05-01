@@ -66,7 +66,17 @@ class Journal
             return;
         }
 
-        shell_exec(sprintf("curl -d \"message=%s\" %s", $message, $this->codexBotLink));
+        $data = array('message' => $message);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,  $this->codexBotLink);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+        curl_exec($ch);
+        curl_close($ch);
     }
 
     /**

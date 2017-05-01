@@ -11,7 +11,7 @@
 
 return array(
 
-    (object) array(
+    array(
         'domain'       => 'CodeX dev server',
         'logFilePath'  => '/var/log/apache2/error.log',
         'codexBotLink' => 'https://bot3.ifmo.su/notifications/ABCD1234',
