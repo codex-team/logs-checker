@@ -22,7 +22,7 @@ class Journal
             $this->$key = $value;
         }
 
-        $this->isLogFileExist();
+        if (!$this->isLogFileExist()) return false;
         $this->setArchiveName();
     }
 
@@ -34,14 +34,16 @@ class Journal
 
         if (!file_exists($this->logFilePath)) {
             $this->sendMessage(sprintf("The file '%s' does not exist. Error log monitor cannot continue.", $this->logFilePath));
-            exit;
+            return false;
         } else if (!is_readable($this->logFilePath)) {
             $this->sendMessage(sprintf("The file '%s' is not readable. Error log monitor cannot continue.", $this->logFilePath));
-            exit;
+            return false;
         } else if (!is_writable($this->logFilePath)) {
             $this->sendMessage(sprintf("The file '%s' is not writable. Error log monitor cannot continue.", $this->logFilePath));
-            exit;
+            return false;
         }
+
+        return true;
     }
 
     /**
@@ -159,6 +161,8 @@ $configs = include($pathToConfig);
 foreach ($configs as $journalConfig) {
 
     $journal = new Journal($journalConfig);
+
+    if (!$journal) { continue; }
 
     /** Check for new logs */
     $logs = $journal->checkUpdates();
