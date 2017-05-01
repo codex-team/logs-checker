@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Config file for check logs script
+ *
+ * For each log file you can create config object with these field:
+ * domain       — label for journal in messages
+ * logFilePath  — path to log file
+ * codexBotLink — url for notification messages from https://t.me/codex_bot
+ */
+
+return array(
+
+    (object) array(
+        'domain'       => 'CodeX dev server',
+        'logFilePath'  => '/var/log/apache2/error.log',
+        'codexBotLink' => 'https://bot3.ifmo.su/notifications/ABCD1234',
+    ),
+
+);
