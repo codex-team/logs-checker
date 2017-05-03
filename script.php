@@ -33,7 +33,8 @@ class Journal
     {
 
         if (!file_exists($this->logFilePath)) {
-            $this->sendMessage(sprintf("The file '%s' does not exist. Error log monitor cannot continue.", $this->logFilePath));
+            /** create empty log file */
+            file_put_contents($this->logFilePath, '');
             return false;
         } else if (!is_readable($this->logFilePath)) {
             $this->sendMessage(sprintf("The file '%s' is not readable. Error log monitor cannot continue.", $this->logFilePath));
