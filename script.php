@@ -52,7 +52,7 @@ class Journal
      */
     private function setArchiveName()
     {
-        $this->archiveName = sprintf('%s__%s.archive', $this->logFilePath, date('Y-m'));
+        $this->archiveName = sprintf('archives/%s__%s', date('Y-m'), $this->logFilePath);
     }
 
     /**
