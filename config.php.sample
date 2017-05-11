@@ -11,6 +11,8 @@
 
 return array(
 
+    /** You can add here arrays for log-files as much as you need */
+
     array(
         'domain'       => 'CodeX dev server',
         'logFilePath'  => '/var/log/apache2/error.log',
