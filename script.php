@@ -52,7 +52,13 @@ class Journal
      */
     private function setArchiveName()
     {
-        $this->archiveName = sprintf('archives/%s__%s', date('Y-m'), $this->logFilePath);
+        /* '/var/log/apache2/error.log' */
+        $path = $this->logFilePath;
+
+        $filename = substr($path, strrpos($path, '/') + 1);
+        $dir = substr($path, 0, strrpos($path, $filename) - 1);
+
+        $this->archiveName = sprintf('%s/archives/%s__%s', $dir, date('Y-m'), $filename);
     }
 
     /**
